@@ -25,16 +25,38 @@ router.post("/", async (req, res) => {
 
 router.get("/:id/actions", async (req, res) => {
   const { id } = req.params;
+  const { project_name } = req.body
+  console.log(project_name);
 
   try {
+    const projects = await Projects.find();
     const actions = await Projects.findActions(id);
+    
     if (actions.length) {
-      res.json(actions);
+      res.json( {projects, actions});
     } else {
       res.status(404).json({ message: "could not find actions for project" });
     }
   } catch (err) {
     res.status(500).json({ message: "failed to get actions" });
+  }
+});
+
+router.get("/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const project = await Projects.findById(id);
+
+    if (project) {
+      res.json(project);
+    } else {
+      res
+        .status(404)
+        .json({ message: "Could not find project with given id." });
+    }
+  } catch (err) {
+    res.status(500).json({ message: "Failed to get projects" });
   }
 });
 
