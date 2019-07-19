@@ -48,6 +48,7 @@ Demonstrate your understanding of this week's concepts by answering the followin
 
 1. What do we need in order to have a _many to many_ relationship between two tables.
 >>> Need to have a parent row in one table that contains several child rows in another table and vice versa.
+>>> In order to join to two tables together, a third is needed.
 
 
 ## Project Set Up

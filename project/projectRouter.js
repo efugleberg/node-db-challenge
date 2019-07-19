@@ -29,11 +29,11 @@ router.get("/:id/actions", async (req, res) => {
   console.log(project_name);
 
   try {
-    const projects = await Projects.find();
+    // const projects = await Projects.find();
     const actions = await Projects.findActions(id);
     
     if (actions.length) {
-      res.json( {projects, actions});
+      res.json( actions);
     } else {
       res.status(404).json({ message: "could not find actions for project" });
     }
